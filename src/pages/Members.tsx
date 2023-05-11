@@ -1,20 +1,20 @@
-import { useCurrentDao } from "@daohaus/moloch-v3-hooks";
-import { MemberList } from "@daohaus/moloch-v3-macro-ui";
+import { useCurrentDao } from '@daohaus/moloch-v3-hooks';
+import { MemberList } from '@daohaus/moloch-v3-macro-ui';
 import {
   SingleColumnLayout,
   Spinner,
   useBreakpoint,
   widthQuery,
-} from "@daohaus/ui";
+} from '@daohaus/ui';
 
 export const Members = () => {
   const { daoChain, daoId } = useCurrentDao();
   const isMd = useBreakpoint(widthQuery.md);
 
   return (
-    <SingleColumnLayout title="Members">
+    <SingleColumnLayout title='Partners'>
       {!daoChain || !daoId ? (
-        <Spinner size={isMd ? "8rem" : "16rem"} padding="6rem" />
+        <Spinner size={isMd ? '8rem' : '16rem'} padding='6rem' />
       ) : (
         <MemberList daoChain={daoChain} daoId={daoId} />
       )}
