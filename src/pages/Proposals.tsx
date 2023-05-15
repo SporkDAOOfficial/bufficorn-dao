@@ -2,7 +2,6 @@ import { ProposalList } from "@daohaus/moloch-v3-macro-ui";
 import { Button, Dialog, DialogContent, DialogTrigger } from "@daohaus/ui";
 import { BsPlusLg } from "react-icons/bs";
 import { NewProposalList } from "../components/NewProposalList";
-import { PROPOSAL_FORMS } from "@daohaus/moloch-v3-legos";
 import { CustomFormLego } from "../legos/fieldConfig";
 import { APP_FORM } from "../legos/forms";
 
@@ -12,7 +11,7 @@ export const Proposals = () => {
   };
 
   const basicProposals = prepareProposals(APP_FORM);
-  const allProposals = prepareProposals(PROPOSAL_FORMS);
+  // const allProposals = prepareProposals(PROPOSAL_FORMS);
 
   return (
     <ProposalList
@@ -25,8 +24,9 @@ export const Proposals = () => {
           </DialogTrigger>
           <DialogContent title="Choose Proposal Type">
             <NewProposalList
-              basicProposals={basicProposals}
-              advancedProposals={allProposals}
+              proposals={basicProposals}
+              label="Bufficorn Proposals"
+              // advancedProposals={allProposals}
             />
           </DialogContent>
         </Dialog>
