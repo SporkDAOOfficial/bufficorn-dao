@@ -4,6 +4,7 @@ import { H4 } from "@daohaus/ui";
 import { Outlet, useLocation, useParams } from "react-router-dom";
 import { TARGET_DAO } from "../targetDao";
 import { CurrentDaoProvider, useDaoData } from "@daohaus/moloch-v3-hooks";
+import { HeaderAvatar } from "./HeaderAvatar";
 
 const routePath = `molochv3/${
   TARGET_DAO[import.meta.env.VITE_TARGET_KEY].CHAIN_ID
@@ -31,7 +32,7 @@ export const LayoutContainer = () => {
         { label: "Treasury", href: `${routePath}/safes` },
         { label: "Settings", href: `${routePath}/settings` },
       ]}
-      leftNav={<H4>{dao?.name}</H4>}
+      leftNav={dao && <HeaderAvatar name={dao.name} imgUrl={dao.avatarImg} />}
     >
       <CurrentDaoProvider
         targetDao={{
