@@ -13,11 +13,12 @@ export enum ProposalTypeIds {
   TokensForShares = "TOKENS_FOR_SHARES",
   GuildKick = "GUILDKICK",
   WalletConnect = "WALLETCONNECT",
+  InitVote = "INIT_VOTE",
 }
 
 export const APP_TX = {
-  POST_SIGNAL: buildMultiCallTX({
-    id: "POST_SIGNAL",
+  INIT_VOTE: buildMultiCallTX({
+    id: "INIT_VOTE",
     JSONDetails: {
       type: "JSONDetails",
       jsonSchema: {
@@ -25,7 +26,7 @@ export const APP_TX = {
         description: `.formValues.description`,
         contentURI: `.formValues.link`,
         contentURIType: { type: "static", value: "url" },
-        proposalType: { type: "static", value: ProposalTypeIds.Signal },
+        proposalType: { type: "static", value: ProposalTypeIds.InitVote },
       },
     },
     actions: [
@@ -40,7 +41,7 @@ export const APP_TX = {
               description: `.formValues.description`,
               contentURI: `.formValues.link`,
               contentURIType: { type: "static", value: "url" },
-              proposalType: { type: "static", value: ProposalTypeIds.Signal },
+              proposalType: { type: "static", value: ProposalTypeIds.InitVote },
             },
           },
           { type: "static", value: POSTER_TAGS.signalProposal },
