@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { useCurrentDao, useDaoProposal } from "@daohaus/moloch-v3-hooks";
+import {
+  useConnectedMember,
+  useCurrentDao,
+  useDaoProposal,
+} from "@daohaus/moloch-v3-hooks";
 import {
   ProposalActionData,
   ProposalActions,
@@ -12,6 +16,8 @@ import {
   PROPOSAL_TYPE_LABELS,
   TXLego,
 } from "@daohaus/utils";
+import { PROTECTED_TARGET } from "../targetDao";
+import { useDHConnect } from "@daohaus/connect";
 
 const LoadingContainer = styled.div`
   margin-top: 5rem;
@@ -50,6 +56,13 @@ export const Proposal = () => {
   const { proposal } = useDaoProposal();
   const { daoChain, daoId } = useCurrentDao();
 
+  const { address } = useDHConnect();
+  const { isMember } = useConnectedMember({
+    daoChain: PROTECTED_TARGET.CHAIN_ID,
+    daoId: PROTECTED_TARGET.ADDRESS,
+    memberAddress: address || null,
+  });
+
   if (!daoChain || !daoId)
     return (
       <LoadingContainer>
@@ -61,6 +74,13 @@ export const Proposal = () => {
     return (
       <LoadingContainer>
         <Spinner size="6rem" />
+      </LoadingContainer>
+    );
+
+  if (!isMember)
+    return (
+      <LoadingContainer>
+        <ParLg>Members Only</ParLg>
       </LoadingContainer>
     );
 

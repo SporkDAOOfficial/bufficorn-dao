@@ -1,6 +1,5 @@
 import { FIELD, TX } from "@daohaus/moloch-v3-legos";
 import { CustomFormLego } from "./fieldConfig";
-import { APP_FIELD } from "./fields";
 import { APP_TX } from "./tx";
 
 const PROPOSAL_SETTINGS_FIELDS = [FIELD.PROPOSAL_EXPIRY, FIELD.PROP_OFFERING];
@@ -8,7 +7,7 @@ const PROPOSAL_SETTINGS_FIELDS = [FIELD.PROPOSAL_EXPIRY, FIELD.PROP_OFFERING];
 export const APP_FORM: Record<string, CustomFormLego> = {
   INIT_VOTE: {
     id: "INIT_VOTE",
-    title: "Intiate Vote",
+    title: "Initiate Vote",
     subtitle: "Intiate Vote Proposal",
     description: "Ratify on-chain using a DAO proposal.",
     requiredFields: { title: true, description: true },
@@ -18,7 +17,6 @@ export const APP_FORM: Record<string, CustomFormLego> = {
       FIELD.TITLE,
       FIELD.DESCRIPTION,
       FIELD.LINK,
-      APP_FIELD.TEST_FIELD,
       ...PROPOSAL_SETTINGS_FIELDS,
     ],
   },
@@ -35,7 +33,7 @@ export const APP_FORM: Record<string, CustomFormLego> = {
       recipient: true,
     },
     fields: [
-      FIELD.TITLE,
+      { ...FIELD.TITLE, label: "Title" },
       FIELD.DESCRIPTION,
       FIELD.LINK,
       {
