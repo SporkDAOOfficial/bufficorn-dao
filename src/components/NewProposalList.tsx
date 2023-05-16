@@ -87,24 +87,26 @@ const ProposalList = ({ proposals }: { proposals: CustomFormLego[] }) => {
 export const NewProposalList = ({ proposals, label }: NewProposalListProps) => {
   return (
     <ListContainer>
-      <Tabs
-        // tabList={[
-        //   {
-        //     label: "Bufficorn Proposals",
-        //     Component: () => <ProposalList proposals={basicProposals} />,
-        //   },
-        //   {
-        //     label: "All Proposals",
-        //     Component: () => <ProposalList proposals={advancedProposals} />,
-        //   },
-        // ]}
-        tabList={[
-          {
-            label,
-            Component: () => <ProposalList proposals={proposals} />,
-          },
-        ]}
-      />
+      <ProposalList proposals={proposals} />
     </ListContainer>
   );
 };
+
+// <Tabs
+// // tabList={[
+// //   {
+// //     label: "Bufficorn Proposals",
+// //     Component: () => <ProposalList proposals={basicProposals} />,
+// //   },
+// //   {
+// //     label: "All Proposals",
+// //     Component: () => <ProposalList proposals={advancedProposals} />,
+// //   },
+// // ]}
+// tabList={[
+//   {
+//     label,
+//     Component: () => <ProposalList proposals={proposals} />,
+//   },
+// ]}
+// />
