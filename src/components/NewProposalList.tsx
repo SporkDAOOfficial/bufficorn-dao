@@ -52,10 +52,7 @@ const StyledIcon = styled(RiArrowRightSLine)`
 `;
 
 type NewProposalListProps = {
-  // basicProposals: CustomFormLego[];
-  // advancedProposals: CustomFormLego[];
   proposals: CustomFormLego[];
-  label: string;
 };
 
 const ProposalList = ({ proposals }: { proposals: CustomFormLego[] }) => {
@@ -84,29 +81,10 @@ const ProposalList = ({ proposals }: { proposals: CustomFormLego[] }) => {
   );
 };
 
-export const NewProposalList = ({ proposals, label }: NewProposalListProps) => {
+export const NewProposalList = ({ proposals }: NewProposalListProps) => {
   return (
     <ListContainer>
       <ProposalList proposals={proposals} />
     </ListContainer>
   );
 };
-
-// <Tabs
-// // tabList={[
-// //   {
-// //     label: "Bufficorn Proposals",
-// //     Component: () => <ProposalList proposals={basicProposals} />,
-// //   },
-// //   {
-// //     label: "All Proposals",
-// //     Component: () => <ProposalList proposals={advancedProposals} />,
-// //   },
-// // ]}
-// tabList={[
-//   {
-//     label,
-//     Component: () => <ProposalList proposals={proposals} />,
-//   },
-// ]}
-// />

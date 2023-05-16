@@ -32,10 +32,7 @@ export const Proposals = () => {
             <Button IconLeft={BsPlusLg}>New Proposal</Button>
           </DialogTrigger>
           <DialogContent title="Choose Proposal Type">
-            <NewProposalList
-              proposals={basicProposals}
-              label="Bufficorn Proposals"
-            />
+            <NewProposalList proposals={basicProposals} />
           </DialogContent>
         </Dialog>
       }

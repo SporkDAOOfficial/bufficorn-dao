@@ -59,10 +59,7 @@ export const Settings = () => {
                 <Button IconLeft={BsPlusLg}>New Proposal</Button>
               </DialogTrigger>
               <DialogContent title="Choose Proposal Type">
-                <NewProposalList
-                  proposals={allProposals}
-                  label="All Proposals"
-                />
+                <NewProposalList proposals={allProposals} />
               </DialogContent>
             </Dialog>
           </SettingsContainer>
