@@ -16,14 +16,11 @@ export const Proposals = () => {
   const basicProposals = prepareProposals(APP_FORM);
 
   const { address } = useDHConnect();
-  const { isMember, connectedMember } = useConnectedMember({
+  const { isMember } = useConnectedMember({
     daoChain: PROTECTED_TARGET.CHAIN_ID,
     daoId: PROTECTED_TARGET.ADDRESS,
     memberAddress: address || null,
   });
-
-  console.log("connectedMember", connectedMember);
-  console.log("isMember", isMember);
 
   return (
     <ProposalList
