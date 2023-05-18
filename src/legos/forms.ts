@@ -14,7 +14,7 @@ export const APP_FORM: Record<string, CustomFormLego> = {
     log: true,
     tx: APP_TX.INIT_VOTE,
     fields: [
-      FIELD.TITLE,
+      { ...FIELD.TITLE, label: 'Title' },
       FIELD.DESCRIPTION,
       FIELD.LINK,
       ...PROPOSAL_SETTINGS_FIELDS,
@@ -60,17 +60,17 @@ export const APP_FORM: Record<string, CustomFormLego> = {
       lootRequested: true,
     },
     fields: [
-      FIELD.TITLE,
+      { ...FIELD.TITLE, label: 'Title' },
       FIELD.DESCRIPTION,
       FIELD.LINK,
       {
         ...FIELD.TO_WEI,
-        label: 'Voting Token Requested',
+        label: 'BVSTK Tokens (Voting)',
         id: 'sharesRequested',
       },
       {
         ...FIELD.TO_WEI,
-        label: 'Non-Voting Token Requested',
+        label: 'BVSTK-LOOT Tokens (Non-Voting)',
         id: 'lootRequested',
       },
       FIELD.TRIBUTE,
@@ -91,7 +91,7 @@ export const APP_FORM: Record<string, CustomFormLego> = {
       recipient: true,
     },
     fields: [
-      FIELD.TITLE,
+      { ...FIELD.TITLE, label: 'Title' },
       FIELD.DESCRIPTION,
       FIELD.LINK,
       {
@@ -103,12 +103,12 @@ export const APP_FORM: Record<string, CustomFormLego> = {
       },
       {
         ...FIELD.TO_WEI,
-        label: 'Voting Token Requested',
+        label: 'BVSTK Tokens (Voting)',
         id: 'sharesRequested',
       },
       {
         ...FIELD.TO_WEI,
-        label: 'Non-Voting Token Requested',
+        label: 'BVSTK-LOOT Tokens (Non-Voting)',
         id: 'lootRequested',
       },
       ...PROPOSAL_SETTINGS_FIELDS,
