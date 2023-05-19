@@ -50,10 +50,6 @@ export const Settings = () => {
           <DaoSettings daoChain={daoChain as keyof Keychain} daoId={dao.id} />
           <SettingsContainer>
             <H3>Proposals</H3>
-            <ParSm>
-              Bufficorn focussed proposal can be made throughout the UI. Here is
-              a list of all the basic DAO proposal types.
-            </ParSm>
             <ParSm>All available proposal types.</ParSm>
             <Dialog>
               <DialogTrigger asChild>
