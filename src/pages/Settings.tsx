@@ -1,5 +1,9 @@
 import React from "react";
-import { useCurrentDao, useDaoData } from "@daohaus/moloch-v3-hooks";
+import {
+  useConnectedMember,
+  useCurrentDao,
+  useDaoData,
+} from "@daohaus/moloch-v3-hooks";
 import {
   Button,
   Card,
@@ -36,6 +40,7 @@ export const SettingsContainer = styled(Card)`
 export const Settings = () => {
   const { daoChain } = useCurrentDao();
   const { dao } = useDaoData();
+  const { isMember } = useConnectedMember();
 
   const prepareProposals = (proposals: Record<string, CustomFormLego>) => {
     return Object.keys(proposals).map((key) => proposals[key]);
@@ -49,18 +54,21 @@ export const Settings = () => {
         <>
           <DaoSettings daoChain={daoChain as keyof Keychain} daoId={dao.id} />
           <GovernanceSettings daoChain={daoChain as keyof Keychain} dao={dao} />
-          <SettingsContainer>
-            <H3>Proposals</H3>
-            <ParSm>All available proposal types.</ParSm>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button IconLeft={BsPlusLg}>New Proposal</Button>
-              </DialogTrigger>
-              <DialogContent title="Choose Proposal Type">
-                <NewProposalList proposals={allProposals} />
-              </DialogContent>
-            </Dialog>
-          </SettingsContainer>
+
+          {isMember && (
+            <SettingsContainer>
+              <H3>Proposals</H3>
+              <ParSm>All available proposal types.</ParSm>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button IconLeft={BsPlusLg}>New Proposal</Button>
+                </DialogTrigger>
+                <DialogContent title="Choose Proposal Type">
+                  <NewProposalList proposals={allProposals} />
+                </DialogContent>
+              </Dialog>
+            </SettingsContainer>
+          )}
         </>
       )}
     </SingleColumnLayout>
