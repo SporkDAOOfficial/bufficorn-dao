@@ -1,5 +1,5 @@
-import React from 'react';
-import { useCurrentDao, useDaoData } from '@daohaus/moloch-v3-hooks';
+import React from "react";
+import { useCurrentDao, useDaoData } from "@daohaus/moloch-v3-hooks";
 import {
   Button,
   Card,
@@ -10,14 +10,14 @@ import {
   ParSm,
   SingleColumnLayout,
   widthQuery,
-} from '@daohaus/ui';
-import { DaoSettings } from '@daohaus/moloch-v3-macro-ui';
-import { Keychain } from '@daohaus/keychain-utils';
-import styled from 'styled-components';
-import { PROPOSAL_FORMS } from '@daohaus/moloch-v3-legos';
-import { BsPlusLg } from 'react-icons/bs';
-import { CustomFormLego } from '../legos/fieldConfig';
-import { NewProposalList } from '../components/NewProposalList';
+} from "@daohaus/ui";
+import { DaoSettings, GovernanceSettings } from "@daohaus/moloch-v3-macro-ui";
+import { Keychain } from "@daohaus/keychain-utils";
+import styled from "styled-components";
+import { PROPOSAL_FORMS } from "@daohaus/moloch-v3-legos";
+import { BsPlusLg } from "react-icons/bs";
+import { CustomFormLego } from "../legos/fieldConfig";
+import { NewProposalList } from "../components/NewProposalList";
 
 export const SettingsContainer = styled(Card)`
   width: 110rem;
@@ -38,16 +38,17 @@ export const Settings = () => {
   const { dao } = useDaoData();
 
   const prepareProposals = (proposals: Record<string, CustomFormLego>) => {
-    return Object.keys(proposals).map(key => proposals[key]);
+    return Object.keys(proposals).map((key) => proposals[key]);
   };
 
   const allProposals = prepareProposals(PROPOSAL_FORMS);
 
   return (
-    <SingleColumnLayout title='Settings'>
+    <SingleColumnLayout title="Settings">
       {dao && (
         <>
           <DaoSettings daoChain={daoChain as keyof Keychain} daoId={dao.id} />
+          <GovernanceSettings daoChain={daoChain as keyof Keychain} dao={dao} />
           <SettingsContainer>
             <H3>Proposals</H3>
             <ParSm>All available proposal types.</ParSm>
@@ -55,7 +56,7 @@ export const Settings = () => {
               <DialogTrigger asChild>
                 <Button IconLeft={BsPlusLg}>New Proposal</Button>
               </DialogTrigger>
-              <DialogContent title='Choose Proposal Type'>
+              <DialogContent title="Choose Proposal Type">
                 <NewProposalList proposals={allProposals} />
               </DialogContent>
             </Dialog>
