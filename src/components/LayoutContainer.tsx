@@ -40,6 +40,7 @@ export const LayoutContainer = () => {
           proposalId,
           memberAddress,
         }}
+        userAddress={address}
       >
         <TXBuilder
           provider={provider}
