@@ -43,7 +43,7 @@ export const APP_FORM: Record<string, CustomFormLego> = {
         info: "Address to receive the tokens",
         placeholder: "0x...",
       },
-      FIELD.REQUEST_TOKEN,
+      { ...FIELD.REQUEST_TOKEN, label: "ERC-20 Tokens" },
       ...PROPOSAL_SETTINGS_FIELDS,
     ],
   },
