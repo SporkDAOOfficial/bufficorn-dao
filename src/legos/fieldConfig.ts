@@ -1,4 +1,3 @@
-import { CoreFieldLookup } from "@daohaus/form-builder";
 import { MolochFields } from "@daohaus/moloch-v3-fields";
 import { FieldLegoBase, FormLegoBase } from "@daohaus/utils";
 import { TestField } from "../components/customFields/fieldTest";
