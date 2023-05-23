@@ -135,7 +135,7 @@ const fetchUserERC20 = async ({
 export const BufficornTributeInput = (
   props: Buildable<{ addressId?: string; amtId?: string }>
 ) => {
-  const { addressId = "tokenAddress", amtId = "tokenAmount" } = props;
+  const { addressId = "tokenAddress", amtId = "tokenAmount", disabled } = props;
 
   const { control, setValue } = useFormContext();
   const { address, chainId } = useDHConnect();
@@ -222,6 +222,7 @@ export const BufficornTributeInput = (
           success={tokenName}
           error={tokenError}
           rules={tokenAddressRules}
+          disabled={disabled}
           placeholder="Select a token"
           options={tokenList}
         />
@@ -240,7 +241,7 @@ export const BufficornTributeInput = (
           full
           label="Tribute Token Amount"
           id={amtId}
-          disabled={needsApproval}
+          disabled={needsApproval || disabled}
           rules={tokenAmtRules}
           rightAddon={maxButton}
           defaultValue="0"
