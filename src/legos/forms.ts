@@ -73,7 +73,12 @@ export const APP_FORM: Record<string, CustomFormLego> = {
         label: "BVSTK-LOOT Tokens (Non-Voting)",
         id: "lootRequested",
       },
-      FIELD.TRIBUTE,
+      // FIELD.TRIBUTE,
+      {
+        id: "tribute",
+        type: "bufficornTribute",
+        label: "Tribute",
+      },
       ...PROPOSAL_SETTINGS_FIELDS,
     ],
   },
