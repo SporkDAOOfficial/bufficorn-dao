@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import {
   useConnectedMember,
   useCurrentDao,
   useDaoData,
-} from "@daohaus/moloch-v3-hooks";
+} from '@daohaus/moloch-v3-hooks';
 import {
   Button,
   Card,
@@ -14,14 +14,20 @@ import {
   ParSm,
   SingleColumnLayout,
   widthQuery,
-} from "@daohaus/ui";
-import { DaoSettings, GovernanceSettings } from "@daohaus/moloch-v3-macro-ui";
-import { Keychain } from "@daohaus/keychain-utils";
-import styled from "styled-components";
-import { PROPOSAL_FORMS } from "@daohaus/moloch-v3-legos";
-import { BsPlusLg } from "react-icons/bs";
-import { CustomFormLego } from "../legos/fieldConfig";
-import { NewProposalList } from "../components/NewProposalList";
+} from '@daohaus/ui';
+import {
+  MetadataSettings,
+  ContractSettings,
+  GovernanceSettings,
+  ShamanSettings,
+  TokenSettings,
+} from '@daohaus/moloch-v3-macro-ui';
+import { Keychain } from '@daohaus/keychain-utils';
+import styled from 'styled-components';
+import { PROPOSAL_FORMS } from '@daohaus/moloch-v3-legos';
+import { BsPlusLg } from 'react-icons/bs';
+import { CustomFormLego } from '../legos/fieldConfig';
+import { NewProposalList } from '../components/NewProposalList';
 
 export const SettingsContainer = styled(Card)`
   width: 110rem;
@@ -52,8 +58,31 @@ export const Settings = () => {
     <SingleColumnLayout title="Settings">
       {dao && (
         <>
-          <DaoSettings daoChain={daoChain as keyof Keychain} daoId={dao.id} />
-          <GovernanceSettings daoChain={daoChain as keyof Keychain} dao={dao} />
+          <MetadataSettings
+            dao={dao}
+            daoChain={daoChain as keyof Keychain}
+            includeLinks={isMember}
+          />
+
+          <TokenSettings
+            dao={dao}
+            daoChain={daoChain as keyof Keychain}
+            includeLinks={isMember}
+          />
+
+          <GovernanceSettings
+            dao={dao}
+            daoChain={daoChain as keyof Keychain}
+            includeLinks={isMember}
+          />
+
+          <ContractSettings dao={dao} daoChain={daoChain as keyof Keychain} />
+
+          <ShamanSettings
+            dao={dao}
+            daoChain={daoChain as keyof Keychain}
+            includeLinks={isMember}
+          />
 
           {isMember && (
             <SettingsContainer>
