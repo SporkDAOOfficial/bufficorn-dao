@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 import {
   useConnectedMember,
   useCurrentDao,
   useDaoData,
-} from '@daohaus/moloch-v3-hooks';
+} from "@daohaus/moloch-v3-hooks";
 import {
   Button,
   Card,
@@ -14,20 +14,21 @@ import {
   ParSm,
   SingleColumnLayout,
   widthQuery,
-} from '@daohaus/ui';
+} from "@daohaus/ui";
 import {
   MetadataSettings,
   ContractSettings,
   GovernanceSettings,
   ShamanSettings,
   TokenSettings,
-} from '@daohaus/moloch-v3-macro-ui';
-import { Keychain } from '@daohaus/keychain-utils';
-import styled from 'styled-components';
-import { PROPOSAL_FORMS } from '@daohaus/moloch-v3-legos';
-import { BsPlusLg } from 'react-icons/bs';
-import { CustomFormLego } from '../legos/fieldConfig';
-import { NewProposalList } from '../components/NewProposalList';
+} from "@daohaus/moloch-v3-macro-ui";
+import { Keychain } from "@daohaus/keychain-utils";
+import styled from "styled-components";
+import { PROPOSAL_FORMS } from "@daohaus/moloch-v3-legos";
+import { BsPlusLg } from "react-icons/bs";
+import { CustomFormLego } from "../legos/fieldConfig";
+import { NewProposalList } from "../components/NewProposalList";
+import { ButtonRouterLink } from "../components/ButtonRouterLink";
 
 export const SettingsContainer = styled(Card)`
   width: 110rem;
@@ -44,9 +45,9 @@ export const SettingsContainer = styled(Card)`
 `;
 
 export const Settings = () => {
-  const { daoChain } = useCurrentDao();
+  const { daoChain, daoId } = useCurrentDao();
   const { dao } = useDaoData();
-  const { isMember } = useConnectedMember();
+  const { isMember, connectedMember } = useConnectedMember();
 
   const prepareProposals = (proposals: Record<string, CustomFormLego>) => {
     return Object.keys(proposals).map((key) => proposals[key]);
@@ -55,7 +56,21 @@ export const Settings = () => {
   const allProposals = prepareProposals(PROPOSAL_FORMS);
 
   return (
-    <SingleColumnLayout title="Settings">
+    <SingleColumnLayout
+      title="Settings"
+      actions={
+        connectedMember &&
+        isMember && (
+          <ButtonRouterLink
+            to={`/molochv3/${daoChain}/${daoId}/member/${connectedMember.memberAddress}`}
+            color="primary"
+            linkType="no-icon-external"
+          >
+            My Profile
+          </ButtonRouterLink>
+        )
+      }
+    >
       {dao && (
         <>
           <MetadataSettings
