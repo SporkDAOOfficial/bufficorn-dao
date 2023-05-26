@@ -4,9 +4,10 @@ import { BsPlusLg } from "react-icons/bs";
 import { NewProposalList } from "../components/NewProposalList";
 import { CustomFormLego } from "../legos/fieldConfig";
 import { APP_FORM } from "../legos/forms";
-import { useConnectedMember, useCurrentDao } from "@daohaus/moloch-v3-hooks";
+import { useConnectedMember } from "@daohaus/moloch-v3-hooks";
 import { useDHConnect } from "@daohaus/connect";
-import { PROTECTED_TARGET, TARGET_DAO } from "../targetDao";
+import { PROTECTED_TARGET } from "../targetDao";
+import { CUSTOM_APP_PROPOSAL_TYPE_LABELS } from "../utils/proposalData";
 
 export const Proposals = () => {
   const prepareProposals = (proposals: Record<string, CustomFormLego>) => {
@@ -26,6 +27,7 @@ export const Proposals = () => {
     <ProposalList
       header="Proposals"
       allowLinks={isMember}
+      customProposalTypeLabels={CUSTOM_APP_PROPOSAL_TYPE_LABELS}
       rightActionEl={
         <Dialog>
           <DialogTrigger asChild>
