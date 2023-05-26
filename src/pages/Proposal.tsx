@@ -8,16 +8,21 @@ import {
   ProposalActionData,
   ProposalActions,
   ProposalDetails,
+  ProposalDetailsContainer,
   ProposalHistory,
 } from "@daohaus/moloch-v3-macro-ui";
 import { BiColumnLayout, Card, ParLg, Spinner, widthQuery } from "@daohaus/ui";
 import {
+  DAO_METHOD_TO_PROPOSAL_TYPE,
   getProposalTypeLabel,
   PROPOSAL_TYPE_LABELS,
+  PROPOSAL_TYPE_WARNINGS,
+  SENSITIVE_PROPOSAL_TYPES,
   TXLego,
 } from "@daohaus/utils";
 import { PROTECTED_TARGET } from "../targetDao";
 import { useDHConnect } from "@daohaus/connect";
+import { CUSTOM_PROPOSAL_TYPE_WARNINGS } from "../utils/proposalData";
 
 const LoadingContainer = styled.div`
   margin-top: 5rem;
@@ -94,19 +99,21 @@ export const Proposal = () => {
       left={
         <OverviewCard>
           {daoChain && daoId && proposal && (
-            <ProposalDetails
+            <ProposalDetailsContainer
               daoChain={daoChain}
               daoId={daoId}
               proposal={proposal}
-              includeLinks
+              includeLinks={true}
+              proposalActionConfig={{
+                sensitiveProposalTypes: SENSITIVE_PROPOSAL_TYPES,
+                actionToProposalType: DAO_METHOD_TO_PROPOSAL_TYPE,
+                proposalTypeWarning: {
+                  ...PROPOSAL_TYPE_WARNINGS,
+                  ...CUSTOM_PROPOSAL_TYPE_WARNINGS,
+                },
+              }}
             />
           )}
-          <ProposalActionData
-            daoChain={daoChain}
-            daoId={daoId}
-            proposal={proposal}
-            txLegos={TX}
-          />
         </OverviewCard>
       }
       right={
