@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import xxx from '../assets/jug.svg';
+import haus from '../assets/haus.svg';
 
 const Footer = () => {
   return (
     <Wrapper>
       <Xxx>
         <a href="https://bootleggers.wtf/">
-          <Jug src={xxx} alt="XXX" />
+          <Built src={haus} alt="Built by Bootleggers on DAOhaus" />
         </a>
       </Xxx>
     </Wrapper>
@@ -24,8 +24,8 @@ const Xxx = styled.div`
   }
 `;
 
-const Jug = styled.img`
-  height: 48px;
+const Built = styled.img`
+  height: 104px;
 `;
 
 const Wrapper = styled.footer`
