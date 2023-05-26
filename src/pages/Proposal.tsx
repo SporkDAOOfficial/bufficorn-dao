@@ -22,7 +22,10 @@ import {
 } from "@daohaus/utils";
 import { PROTECTED_TARGET } from "../targetDao";
 import { useDHConnect } from "@daohaus/connect";
-import { CUSTOM_PROPOSAL_TYPE_WARNINGS } from "../utils/proposalData";
+import {
+  CUSTOM_APP_PROPOSAL_TYPE_LABELS,
+  CUSTOM_PROPOSAL_TYPE_WARNINGS,
+} from "../utils/proposalData";
 
 const LoadingContainer = styled.div`
   margin-top: 5rem;
@@ -94,7 +97,7 @@ export const Proposal = () => {
       title={proposal?.title}
       subtitle={`${proposal?.proposalId} | ${getProposalTypeLabel(
         proposal?.proposalType,
-        PROPOSAL_TYPE_LABELS
+        { ...PROPOSAL_TYPE_LABELS, ...CUSTOM_APP_PROPOSAL_TYPE_LABELS }
       )}`}
       left={
         <OverviewCard>
