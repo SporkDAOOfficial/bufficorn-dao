@@ -53,7 +53,12 @@ export const Members = () => {
       {!daoChain || !daoId ? (
         <Spinner size={isMd ? "8rem" : "16rem"} padding="6rem" />
       ) : (
-        <MemberList daoChain={daoChain} daoId={daoId} allowLinks={true} />
+        <MemberList
+          daoChain={daoChain}
+          daoId={daoId}
+          allowLinks={false}
+          allowMemberMenu={false}
+        />
       )}
     </SingleColumnLayout>
   );
