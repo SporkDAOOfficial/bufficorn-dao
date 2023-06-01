@@ -25,7 +25,7 @@ export const APP_FORM: Record<string, CustomFormLego> = {
     title: "Fund Company",
     subtitle: "Funding Proposal",
     description: "Send ERC-20 tokens from the Treasury.",
-    tx: TX.ISSUE_ERC20,
+    tx: APP_TX.FUND_COMPANY,
     requiredFields: {
       title: true,
       description: true,
@@ -52,7 +52,7 @@ export const APP_FORM: Record<string, CustomFormLego> = {
     title: "Become Partner",
     subtitle: "Partner Proposal",
     description: "Request BVSTK or BVSTK-LOOT in exchange for ERC-20 tokens.",
-    tx: TX.TOKENS_FOR_SHARES,
+    tx: APP_TX.BECOME_PARTNER,
     requiredFields: {
       title: true,
       description: true,
@@ -87,7 +87,7 @@ export const APP_FORM: Record<string, CustomFormLego> = {
     title: "Add Partner",
     subtitle: "Partner Proposal",
     description: "Send BVSTK or BVSTK-LOOT tokens.",
-    tx: TX.ISSUE,
+    tx: APP_TX.ADD_PARTNER,
     requiredFields: {
       title: true,
       description: true,
