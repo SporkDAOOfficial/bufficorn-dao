@@ -57,26 +57,10 @@ export const Member = () => {
       {member && (
         <>
           <ButtonsContainer>
-            {/* <ButtonRouterLink
-              to={`/molochv3/${daoChain}/${daoId}/members`}
-              IconLeft={StyledArrowLeft}
-              color="secondary"
-              linkType="no-icon-external"
-              variant="outline"
-              fullWidth={isMobile}
-              // was centerAlign={isMobile}
-              // Default has always been center.
-              // Not sure what is supposed to happen here?
-              // justify={isMobile ? 'center' : 'flex-start'}
-            >
-              MEMBERS
-            </ButtonRouterLink> */}
             <Button
               IconLeft={BsShareFill}
               onClick={handleOnClick}
               fullWidth={isMobile}
-              // Same as above
-              // centerAlign={isMobile}
             >
               SHARE PROFILE
             </Button>
@@ -86,6 +70,7 @@ export const Member = () => {
             daoId={daoId}
             member={member}
             allowLinks={true}
+            allowMemberMenu={true}
           />
         </>
       )}
