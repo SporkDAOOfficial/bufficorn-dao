@@ -44,6 +44,10 @@ export const SettingsContainer = styled(Card)`
   }
 `;
 
+const SAFE_FORMS = PROPOSAL_FORMS;
+delete SAFE_FORMS.MULTICALL_BUILDER;
+delete SAFE_FORMS.MULTICALL_BUILDER_SIDECAR;
+
 export const Settings = () => {
   const { daoChain, daoId } = useCurrentDao();
   const { dao } = useDaoData();
@@ -53,7 +57,7 @@ export const Settings = () => {
     return Object.keys(proposals).map((key) => proposals[key]);
   };
 
-  const allProposals = prepareProposals(PROPOSAL_FORMS);
+  const allProposals = prepareProposals(SAFE_FORMS);
 
   return (
     <SingleColumnLayout
