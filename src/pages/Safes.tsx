@@ -22,7 +22,7 @@ export const Safes = () => {
       }
     >
       {dao && daoChain && (
-        <SafesList daoChain={daoChain} daoId={dao.id} includeLinks={true} />
+        <SafesList daoChain={daoChain} daoId={dao.id} includeLinks={false} />
       )}
     </SingleColumnLayout>
   );
