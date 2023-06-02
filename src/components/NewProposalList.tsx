@@ -1,4 +1,4 @@
-import { useParams, Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { RiArrowRightSLine } from "react-icons/ri/index.js";
 import styled from "styled-components";
 import { Bold, border, DataSm, ParMd, Tabs, Theme } from "@daohaus/ui";
