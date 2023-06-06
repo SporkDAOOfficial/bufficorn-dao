@@ -50,6 +50,8 @@ Proposal transfers ERC-20 tokens from DAO treasury.
 
 ### Become Partner
 
+Proposal issues voting and/or non-voting tokens from the DAO. This proposal allows new partners to add themselves to the DAO by requesting voting or non-voting tokens in exchange for ERC-20 tribute tokens.
+
 - title: 'Become Partner',
 - subtitle: 'Partner Proposal'
 - description: 'Request BVSTK or BVSTK-LOOT tokens in exchange for ERC-20 tokens.'
@@ -62,7 +64,7 @@ Proposal transfers ERC-20 tokens from DAO treasury.
 
 ### Add Partner
 
-Proposal issues voting and/or non-voting tokens from the DAO. This proposal is to be used for internal operations adding partners that provided funds outside of the propsal process.
+Proposal issues voting and/or non-voting tokens from the DAO. This proposal is for internal operations adding partners that provided funds outside of the propsal process.
 
 - title: 'Add Partner',
 - subtitle: 'Partner Proposal',
