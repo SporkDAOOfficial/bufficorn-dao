@@ -106,7 +106,6 @@ const fetchUserERC20 = async ({
   });
 
   try {
-    console.log("userAddress", userAddress, chainId);
     const balance = await contract.balanceOf(userAddress);
     const decimals = await contract.decimals();
     const tokenName = await contract.name();
