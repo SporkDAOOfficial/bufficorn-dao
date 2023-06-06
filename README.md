@@ -1,188 +1,82 @@
-# DAO MiniApp Starter (vite)
+---
+###### tags: `bufficorn`
+---
 
-Vite React Starter for a DAO app scoped to a single DAO.
+# Bufficorn DAO App Docs
 
-## Development
+## Proposals
 
-### 1. Project Setup
+Description of various types of proposals implemented for Bufficorn DAO [App](https://bison-narwhal.vercel.app/).
 
-#### NPX/degit
+<!--
+Some proposals have `As Is` and `Potential Enhancements` headings to explain current functionality and inspire ways to increase automation or add features.
+-->
 
-```bash
-npx degit HausDAO/dao-app-starter-vite my-daohaus-app
+## Notes
 
-cd my-daohaus-app
+Previous proposals will not contain updates.
 
-git init
+### Modal
 
-yarn
-```
+![new-proposal](https://github.com/0xBootleggers/bufficorn/assets/522182/10f92e63-27b1-4f34-816e-d8f7ddf80151)
 
-#### SSH
+### Initiate Vote
 
-```bash
-git clone git@github.com:HausDAO/moloch-v3-vite-starter.git
+Proposal for DAO voting signal. No transactions are executed.
 
-git remote remove origin
+- title: "Initiate Vote"
+- subtitle: "Signal Proposal"
+- description: "Ratify vote with an on-chain signal."
 
-cd dh-moloch-v3-vite-starter
+![initiate-form](https://github.com/0xBootleggers/bufficorn/assets/522182/98fa1420-7efe-4e97-ba44-05f68ec56713)
 
-yarn
-```
+![initiate-list](https://github.com/0xBootleggers/bufficorn/assets/522182/3ea576c5-c4c6-4340-aef8-c6f2c0ecc477)
 
-#### HTTPS
+![initiate-details](https://github.com/0xBootleggers/bufficorn/assets/522182/199e82c1-7f6d-44d3-bd0b-1ba317c8a9f6)
 
-```bash
-git clone https://github.com/HausDAO/dh-v3-vite-starter.git
+### Fund Company
 
-git remote remove origin
+Proposal transfers ERC-20 tokens from DAO treasury.
 
-cd dh-moloch-v3-vite-starter
+- title: 'Fund Company'
+- subtitle: 'Funding Proposal'
+- description: 'Send ERC-20 tokens from the Treasury.'
 
-yarn
-```
+![fund-form](https://github.com/0xBootleggers/bufficorn/assets/522182/baee8fe6-f00a-440e-9b38-e88871a8f4d1)
 
-### 2. `.env` Setup
+![fund-list](https://github.com/0xBootleggers/bufficorn/assets/522182/da23bbbe-51e9-464f-b68c-ab36324d5871)
 
-```bash
-cp .env.sample .env
-```
+![fund-details](https://github.com/0xBootleggers/bufficorn/assets/522182/35cac0e8-bddd-430d-b58e-df6d242e92ac)
 
-```yaml
-VITE_RIVET_KEY
-```
+### Become Partner
 
-Get a free Rivet key [here](https://rivet.cloud/)
+Proposal issues voting and/or non-voting tokens from the DAO. This proposal allows new partners to add themselves to the DAO by requesting voting or non-voting tokens in exchange for ERC-20 tribute tokens.
 
-```yaml
-VITE_EXPLORER_KEY
-```
+- title: 'Become Partner',
+- subtitle: 'Partner Proposal'
+- description: 'Request BVSTK or BVSTK-LOOT tokens in exchange for ERC-20 tokens.'
 
-Get an Etherscan API key [here](https://etherscan.io/apis)
+![become-form](https://github.com/0xBootleggers/bufficorn/assets/522182/d875038c-706c-4d14-abb2-f56c4b483c20)
 
-```yaml
-VITE_GRAPH_API_KEY_MAINNET
-```
+![become-list](https://github.com/0xBootleggers/bufficorn/assets/522182/94cc8cf9-4ff9-4aba-889f-0b6f0b9c90e9)
 
-If developing for Mainnet or Gnosis Chain you can get an API key [here](https://thegraph.com/explorer/subgraph?id=GfHFdFmiSwW1PKtnDhhcxhArwtTjVuMnXxQ5XcETF1bP&view=Overview). Ignore this one if not worried about mainnet or gnosis chain yet.
+![become-details](https://github.com/0xBootleggers/bufficorn/assets/522182/cad4473c-f304-4dd0-b9ce-9ffcb952ef98)
 
-```yaml
-VITE_TARGET_KEY
-```
+### Add Partner
 
-This is the target address for the DAO you are developing the app for. You will get this value in the next step if you do not have an existing DAO.
+Proposal issues voting and/or non-voting tokens from the DAO. This proposal is for internal operations adding partners that provided funds outside of the propsal process.
 
-### 3. Target DAO Set-up
+- title: 'Add Partner',
+- subtitle: 'Partner Proposal',
+- description: 'Send BVSTK or BVSTK-LOOT tokens.',
 
-[Summon](https://summon.daohaus.club) a DAO
+![add-form](https://github.com/0xBootleggers/bufficorn/assets/522182/ad5e559b-ab7f-4383-a150-f791cb216a7c)
 
-#### Edit `src/targetDao.ts`
+![add-list](https://github.com/0xBootleggers/bufficorn/assets/522182/e5feaafe-17fc-49e5-b1b7-b8f3ad901d24)
 
-Add your DAO's data to the property and values of the object
+![add-details](https://github.com/0xBootleggers/bufficorn/assets/522182/ddfcc3b0-e18f-440f-b246-090e5bea149d)
 
-#### Edit `.env`
+## Potential Enhancements
 
-Add the DAO address in the `VITE_TARGET_KEY` variable
-
-- You can add multiple DAOs as new objects in `targetDao.ts` and toggle with this `env` variable
-- You can add other variables to `targetDao.ts` as needed
-
-### 4. Run the Development Server
-
-```bash
-yarn dev
-```
-
-## Reference
-
-### `main.tsx`
-
-- Sets up the `react-query` provider `@daohaus/moloch-v3-hooks` will use
-- Sets up `DHConnectProvider` - that handles the Wallet Connect functionality
-- Sets up `HausThemeProvider` - that provides the styling theme to the app
-- Adds the router to the app
-
-### `HomeContainer.tsx`
-
-- Parent component wrapping all routes/pages
-- Sets up `DHLayout` which adds the connect button and navigation to the app
-  - You can update the navigation in `navLinks`
-- Sets up `TXBuilder` which enables easy transaction creation
-
-### `FormTest.tsx`
-
-- Example of how to add `FormBuilder` to the app
-- See the legos it is using at `legos/forms.ts`, `legos/fields.ts`, and `legos/tx.ts`
-  - These are recipes for creating forms and contract function interactions
-
-### ToDo
-
-- Ad routes/pages for dao overview, vaults, settings
-  - proposals, members and profile coming soon
-- show hook data fetch
-- show macro ui addition
-- `moloch-v3-fields` package
-  - coming soon
-
-### Adding UI Components
-
-- [Storybook](https://storybook.js.org/)
-
-### Methods for Accessing `daoid` and `daochain`
-
-These values are used in most hooks and components and you have some options:
-
-Get them from `targetDao.ts`
-
-```tsx
-const daoChain = TARGET_DAO[import.meta.env.VITE_TARGET_KEY].CHAIN_ID;
-const daoId = TARGET_DAO[import.meta.env.VITE_TARGET_KEY].ADDRESS;
-```
-
-or load them into a context from the `@daohaus/moloch-v3-hooks` library and then there is a hook you can use.
-
-Wrap your tree in this context:
-
-```tsx
-import { CurrentDaoProvider } from "@daohaus/moloch-v3-hooks";
-
-...
-
-<CurrentDaoProvider
-  targetDao={{
-    daoChain: TARGET_DAO[import.meta.env.VITE_TARGET_KEY].CHAIN_ID,
-    daoId: TARGET_DAO[import.meta.env.VITE_TARGET_KEY].ADDRESS,
-  }}
->
-  {children}
-</CurrentDaoProvider>;
-```
-
-Then access this hook:
-
-```tsx
-import { useCurrentDao } from "@daohaus/moloch-v3-hooks";
- ...
-
-const { daoChain, daoId } = useCurrentDao();
-```
-
-- Future: `urlParams` in a multi DAO app
-
-### Adding Custom Fields
-
-tbd
-
-### Editing the Theme
-
-tbd
-
-### Router Example for Multi DAO App
-
-tbd
-
-## Resources
-
-- [DAO Toolbox](https://toolbox.daohaus.fun/) docs
-- HausDAO monorepo [libs](https://github.com/HausDAO/monorepo/tree/develop/libs)
-- monorepo admin/admin-new
+- Adding Safes: Right now all proposals are related to Treasury. Could improve operations by have seperate safes for various functions.
+- Adding Forms: We have implemented the basic forms required for onboarding partners and funding companies. Could increase transparency of operations by adding additional proposals to other common tasks in the DAO or summon other sub-daos for operations and marketing functions. Proposals to the Bufficorn Ventures DAO would then only be needed for providing the budget to those functions.
