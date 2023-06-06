@@ -28,6 +28,7 @@ import {
   WrappedSelect,
 } from "@daohaus/ui";
 import { TARGET_DAO } from "../../targetDao";
+import { useCurrentDao } from "@daohaus/moloch-v3-hooks";
 
 type TokenData = {
   allowance: string;
@@ -105,6 +106,7 @@ const fetchUserERC20 = async ({
   });
 
   try {
+    console.log("userAddress", userAddress, chainId);
     const balance = await contract.balanceOf(userAddress);
     const decimals = await contract.decimals();
     const tokenName = await contract.name();
@@ -138,7 +140,8 @@ export const BufficornTributeInput = (
   const { addressId = "tokenAddress", amtId = "tokenAmount", disabled } = props;
 
   const { control, setValue } = useFormContext();
-  const { address, chainId } = useDHConnect();
+  const { address } = useDHConnect();
+  const { daoChain } = useCurrentDao();
   const tokenAddress = useWatch({
     name: addressId,
     control,
@@ -151,7 +154,7 @@ export const BufficornTributeInput = (
     let shouldUpdate = true;
     fetchUserERC20({
       tokenAddress,
-      chainId,
+      chainId: daoChain,
       userAddress: address,
       setFetchState,
       setTokenData,
@@ -161,7 +164,7 @@ export const BufficornTributeInput = (
     return () => {
       shouldUpdate = false;
     };
-  }, [tokenAddress, address, chainId]);
+  }, [tokenAddress, address]);
 
   const tokenName =
     tokenData?.tokenName && fetchState === TokenFetchStates.Success
