@@ -78,5 +78,44 @@ Proposal issues voting and/or non-voting tokens from the DAO. This proposal is f
 
 ## Potential Enhancements
 
-- Adding Safes: Right now all proposals are related to Treasury. Could improve operations by have seperate safes for various functions.
-- Adding Forms: We have implemented the basic forms required for onboarding partners and funding companies. Could increase transparency of operations by adding additional proposals to other common tasks in the DAO or summon other sub-daos for operations and marketing functions. Proposals to the Bufficorn Ventures DAO would then only be needed for providing the budget to those functions.
+Additional design and functional enhancements are possible on a project basis or monthly retainer for bug fixes and change requests.
+
+### Custom Branding
+
+This app uses the [@daohaus/ui](https://www.npmjs.com/package/@daohaus/ui) component library and remains visually consistent with the current version of the [DAOhaus Admin](https://admin.daohaus.club/) app. It is possible to brand this app to the styles and user expereince of Bufficorn Ventures.
+
+### Adding Safes
+
+Right now all proposals are related to Treasury. Could improve operations by have seperate safes for various functions.
+
+### Adding Forms
+
+We have implemented the basic forms required for onboarding partners and funding companies. Could increase transparency of operations by adding additional proposals to other common tasks in the DAO or summon other sub-daos for operations and marketing functions. Proposals to the Bufficorn Ventures DAO would then only be needed for providing the budget to those functions.
+
+### Safe App
+
+[Create](https://docs.safe.global/learn/safe-apps/get-started) and release an official BV DAO App available natively within Gnosis Safe.
+
+#### Roles
+
+It is possible to add some interesting features and flows only visible to people with certain roles. For this app we have hidden content from users who are not members of the DAO. Getting more granualar with what is visible and tailoring expereinces for different roles would provides a unique experience.
+
+#### Charmverse Integrations
+
+It is possible to explore adding integrations with the [Charmverse API](https://app.charmverse.io/api-docs) to help consolidate Bufficorn Ventures tools into a central location.
+
+#### [DocuSign Connect](https://developers.docusign.com/platform/webhooks/connect/)
+
+It is possible to implement a webhook service enabling updates when specific triggering events occur in the DocuSign eSignature workflows.
+
+#### Companies Page
+
+It is possible to add a page to the DAO with information related to and features designed for portfolio companies.
+
+#### Platform for Investment DAOs
+
+Combining Bufficorn Ventures network and experience with venture DAOs with DAOhaus v3 technology presents an opportunity for building a platform tailored to investor use cases. Creating an application designed for investment communities is an exciting application of this technology.
+
+#### ETHDenver CRM
+
+The Bootleggers team has also built a custom Web3 CRM for RaidGuild. It would be possible to cusomize this technology to build a CRM for ETHDenver.
