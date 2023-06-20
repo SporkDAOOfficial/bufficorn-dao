@@ -47,6 +47,25 @@ export const TARGET_DAO: {
       },
     ],
   },
+  "0x3102fdcaaf1c08116142caaa8f32b647ebf34ba3": {
+    ADDRESS: "0x3102fdcaaf1c08116142caaa8f32b647ebf34ba3",
+    SAFE_ADDRESS: "0x8b7dc76a734befc2376ea2094dcee48299148d04",
+    CHAIN_ID: "0x89",
+    TRIBUTE_TOKENS: [
+      {
+        name: "DAI",
+        value: "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
+      },
+      {
+        name: "USDC",
+        value: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+      },
+      {
+        name: "SPORK",
+        value: "0x9CA6a77C8B38159fd2dA9Bd25bc3E259C33F5E39",
+      },
+    ],
+  },
 };
 
 export const PROTECTED_TARGET = TARGET_DAO[import.meta.env.VITE_TARGET_KEY];
