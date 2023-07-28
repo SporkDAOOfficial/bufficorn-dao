@@ -14,8 +14,24 @@ export default ({ mode }) => {
         NX_POLYGONSCAN_KEY: process.env.VITE_POLYGONSCAN_KEY,
         NX_TARGET_KEY: process.env.VITE_TARGET_KEY,
         NX_GNOSISSCAN_KEY: process.env.VITE_GNOSISSCAN_KEY,
+        NX_WALLET_CONNECT_ID: process.env.VITE_WALLET_CONNECT_ID,
         NODE_ENV: '16.6.0',
       },
+    },
+    optimizeDeps: {
+      esbuildOptions: {
+        target: 'es2020',
+        define: {
+          global: 'globalThis',
+        },
+        supported: {
+          bigint: true,
+        },
+      },
+    },
+
+    build: {
+      target: ['es2020'],
     },
   });
 };
