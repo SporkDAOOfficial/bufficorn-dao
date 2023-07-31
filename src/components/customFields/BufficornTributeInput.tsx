@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import { RegisterOptions, useFormContext, useWatch } from "react-hook-form";
-import { MaxUint256 } from "@ethersproject/constants";
+import { useEffect, useState } from 'react';
+import { RegisterOptions, useFormContext, useWatch } from 'react-hook-form';
 
-import { LOCAL_ABI } from "@daohaus/abis";
+import { LOCAL_ABI } from '@daohaus/abis';
 import {
   ContractLego,
   formatValueTo,
@@ -12,11 +11,13 @@ import {
   toBaseUnits,
   toWholeUnits,
   TXLego,
-} from "@daohaus/utils";
-import { CONTRACT_KEYCHAINS, isValidNetwork } from "@daohaus/keychain-utils";
-import { useDHConnect } from "@daohaus/connect";
-import { FieldSpacer } from "@daohaus/form-builder";
-import { createContract, useTxBuilder } from "@daohaus/tx-builder";
+  createViemClient,
+  MaxUint256,
+} from '@daohaus/utils';
+import { CONTRACT_KEYCHAINS, isValidNetwork } from '@daohaus/keychain-utils';
+import { useDHConnect } from '@daohaus/connect';
+import { FieldSpacer } from '@daohaus/form-builder';
+import { useTxBuilder } from '@daohaus/tx-builder';
 import {
   Buildable,
   Button,
@@ -26,9 +27,9 @@ import {
   useToast,
   WrappedInput,
   WrappedSelect,
-} from "@daohaus/ui";
-import { TARGET_DAO } from "../../targetDao";
-import { useCurrentDao } from "@daohaus/moloch-v3-hooks";
+} from '@daohaus/ui';
+import { TARGET_DAO } from '../../targetDao';
+import { useCurrentDao } from '@daohaus/moloch-v3-hooks';
 
 type TokenData = {
   allowance: string;
@@ -39,31 +40,31 @@ type TokenData = {
 };
 
 enum TokenFetchStates {
-  Idle = "",
-  Loading = "Loading Token Data...",
-  NotEthAddress = "Not a valid Ethereum address",
-  NotValidNetwork = "Not a valid network",
-  NotConnected = "Connection Error",
-  Error = "Error fetching token data",
-  Success = "Success",
+  Idle = '',
+  Loading = 'Loading Token Data...',
+  NotEthAddress = 'Not a valid Ethereum address',
+  NotValidNetwork = 'Not a valid network',
+  NotConnected = 'Connection Error',
+  Error = 'Error fetching token data',
+  Success = 'Success',
 }
 
 const tokenList = TARGET_DAO[import.meta.env.VITE_TARGET_KEY].TRIBUTE_TOKENS;
 
 const ERC_20_CONTRCT: ContractLego = {
-  type: "static",
-  contractName: "ERC20",
+  type: 'static',
+  contractName: 'ERC20',
   abi: LOCAL_ABI.ERC20,
-  targetAddress: ".tokenAddress",
+  targetAddress: '.tokenAddress',
 };
 
 export const APPROVE_TX: TXLego = {
-  id: "APPROVE_TOKEN",
+  id: 'APPROVE_TOKEN',
   contract: ERC_20_CONTRCT,
-  method: "approve",
+  method: 'approve',
   args: [
-    { type: "singleton", keychain: CONTRACT_KEYCHAINS.TRIBUTE_MINION },
-    { type: "static", value: MaxUint256 },
+    { type: 'singleton', keychain: CONTRACT_KEYCHAINS.TRIBUTE_MINION },
+    { type: 'static', value: MaxUint256 },
   ],
 };
 
@@ -99,18 +100,40 @@ const fetchUserERC20 = async ({
     return setFetchState(TokenFetchStates.NotValidNetwork);
 
   const spenderAddress = CONTRACT_KEYCHAINS.TRIBUTE_MINION[chainId];
-  const contract = createContract({
-    address: tokenAddress,
+
+  const client = createViemClient({
     chainId,
-    abi: LOCAL_ABI.ERC20,
   });
 
   try {
-    const balance = await contract.balanceOf(userAddress);
-    const decimals = await contract.decimals();
-    const tokenName = await contract.name();
-    const tokenSymbol = await contract.symbol();
-    const allowance = await contract.allowance(userAddress, spenderAddress);
+    const balance = (await client.readContract({
+      abi: LOCAL_ABI.ERC20,
+      address: tokenAddress,
+      functionName: 'balanceOf',
+      args: [userAddress],
+    })) as bigint;
+
+    const decimals = await client.readContract({
+      abi: LOCAL_ABI.ERC20,
+      address: tokenAddress,
+      functionName: 'decimals',
+    });
+    const tokenName = await client.readContract({
+      abi: LOCAL_ABI.ERC20,
+      address: tokenAddress,
+      functionName: 'name',
+    });
+    const tokenSymbol = await client.readContract({
+      abi: LOCAL_ABI.ERC20,
+      address: tokenAddress,
+      functionName: 'symbol',
+    });
+    const allowance = (await client.readContract({
+      abi: LOCAL_ABI.ERC20,
+      address: tokenAddress,
+      functionName: 'allowance',
+      args: [userAddress, spenderAddress],
+    })) as bigint;
     const tokenData = {
       allowance: allowance.toString(),
       balance: balance.toString(),
@@ -123,7 +146,7 @@ const fetchUserERC20 = async ({
       setTokenData(tokenData);
       setFetchState(TokenFetchStates.Success);
 
-      allowance.toString() === "0"
+      allowance.toString() === '0'
         ? setNeedsApproval(true)
         : setNeedsApproval(false);
     }
@@ -136,7 +159,7 @@ const fetchUserERC20 = async ({
 export const BufficornTributeInput = (
   props: Buildable<{ addressId?: string; amtId?: string }>
 ) => {
-  const { addressId = "tokenAddress", amtId = "tokenAmount", disabled } = props;
+  const { addressId = 'tokenAddress', amtId = 'tokenAmount', disabled } = props;
 
   const { control, setValue } = useFormContext();
   const { address } = useDHConnect();
@@ -168,7 +191,7 @@ export const BufficornTributeInput = (
   const tokenName =
     tokenData?.tokenName && fetchState === TokenFetchStates.Success
       ? ({
-          type: "success",
+          type: 'success',
           message: `Token: ${tokenData.tokenName}`,
         } as SuccessMessage)
       : undefined;
@@ -176,15 +199,15 @@ export const BufficornTributeInput = (
   const tokenError =
     fetchState === TokenFetchStates.Error
       ? ({
-          type: "error",
+          type: 'error',
           message: TokenFetchStates.Error,
         } as ErrorMessage)
       : undefined;
 
   const tokenAmtRules: RegisterOptions = {
     required: true,
-    setValueAs: (val) => {
-      if (val === "") return "";
+    setValueAs: val => {
+      if (val === '') return '';
 
       return toBaseUnits(val, tokenData?.decimals);
     },
@@ -203,12 +226,12 @@ export const BufficornTributeInput = (
   };
 
   const maxButton = tokenData?.balance && tokenData?.decimals && (
-    <Button color="secondary" size="sm" onClick={handleMax} type="button">
-      Max:{" "}
+    <Button color='secondary' size='sm' onClick={handleMax} type='button'>
+      Max:{' '}
       {formatValueTo({
         value: toWholeUnits(tokenData?.balance, tokenData?.decimals),
         decimals: 6,
-        format: "number",
+        format: 'number',
       })}
     </Button>
   );
@@ -218,14 +241,14 @@ export const BufficornTributeInput = (
       <FieldSpacer>
         <WrappedSelect
           full
-          label="Tribute Token"
+          label='Tribute Token'
           id={addressId}
           helperText={fetchState}
           success={tokenName}
           error={tokenError}
           rules={tokenAddressRules}
           disabled={disabled}
-          placeholder="Select a token"
+          placeholder='Select a token'
           options={tokenList}
         />
         {needsApproval &&
@@ -241,12 +264,12 @@ export const BufficornTributeInput = (
       <FieldSpacer>
         <WrappedInput
           full
-          label="Tribute Token Amount"
+          label='Tribute Token Amount'
           id={amtId}
           disabled={needsApproval || disabled}
           rules={tokenAmtRules}
           rightAddon={maxButton}
-          defaultValue="0"
+          defaultValue='0'
         />
       </FieldSpacer>
     </>
@@ -254,10 +277,10 @@ export const BufficornTributeInput = (
 };
 
 enum TxStates {
-  Idle = "Idle",
-  Loading = "Loading",
-  Error = "Error",
-  Success = "Token Approved!",
+  Idle = 'Idle',
+  Loading = 'Loading',
+  Error = 'Error',
+  Success = 'Token Approved!',
 }
 
 const TemporaryWarning = ({
@@ -301,11 +324,11 @@ const TemporaryWarning = ({
 
   return (
     <FieldAlert
-      className="warning"
-      message={`You must approve ${tokenName || "Token"} to submit`}
+      className='warning'
+      message={`You must approve ${tokenName || 'Token'} to submit`}
     >
-      <Button size="sm" onClick={handleApprove}>
-        {txState === TxStates.Loading ? "Loading..." : "Approve"}
+      <Button size='sm' onClick={handleApprove}>
+        {txState === TxStates.Loading ? 'Loading...' : 'Approve'}
       </Button>
     </FieldAlert>
   );

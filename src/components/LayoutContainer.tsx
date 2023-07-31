@@ -16,7 +16,7 @@ export const LayoutContainer = () => {
     proposalId: string;
     memberAddress: string;
   }>();
-  const { provider, address } = useDHConnect();
+  const { publicClient, address } = useDHConnect();
   const { dao } = useDaoData({
     daoId: TARGET_DAO[import.meta.env.VITE_TARGET_KEY].ADDRESS,
     daoChain: TARGET_DAO[import.meta.env.VITE_TARGET_KEY].CHAIN_ID,
@@ -45,7 +45,7 @@ export const LayoutContainer = () => {
         userAddress={address}
       >
         <TXBuilder
-          provider={provider}
+          publicClient={publicClient}
           chainId={TARGET_DAO[import.meta.env.VITE_TARGET_KEY].CHAIN_ID}
           daoId={TARGET_DAO[import.meta.env.VITE_TARGET_KEY].ADDRESS}
           safeId={TARGET_DAO[import.meta.env.VITE_TARGET_KEY].SAFE_ADDRESS}
