@@ -1,9 +1,9 @@
-import { Link as RouterLink } from "react-router-dom";
-import { RiArrowRightSLine } from "react-icons/ri/index.js";
-import styled from "styled-components";
-import { Bold, border, DataSm, ParMd, Tabs, Theme } from "@daohaus/ui";
-import { CustomFormLego } from "../legos/fieldConfig";
-import { useCurrentDao } from "@daohaus/moloch-v3-hooks";
+import { Link as RouterLink } from 'react-router-dom';
+import { RiArrowRightSLine } from 'react-icons/ri/index.js';
+import styled from 'styled-components';
+import { Bold, DataSm, ParMd } from '@daohaus/ui';
+import { CustomFormLego } from '../legos/fieldConfig';
+import { useCurrentDao } from '@daohaus/moloch-v3-hooks';
 
 const ListContainer = styled.div`
   margin-top: 2.5rem;
@@ -12,15 +12,14 @@ const ListContainer = styled.div`
 const ListItemContainer = styled.div`
   width: 100%;
   padding: 1rem 0;
-  border-top: 1px ${({ theme }: { theme: Theme }) => theme.secondary.step6}
-    solid;
+  border-top: 1px ${({ theme }: { theme: any }) => theme.secondary.step6} solid;
 `;
 
 const ListItemLink = styled(RouterLink)`
   text-decoration: none;
   width: 100%;
   color: unset;
-  :hover {
+  &:hover {
     text-decoration: none;
   }
 `;
@@ -31,10 +30,10 @@ const ListItemHoverContainer = styled.div`
   align-items: center;
   width: 100%;
   padding: 1rem;
-  border-radius: ${border.radius};
+  border-radius: ${({ theme }: { theme: any }) => theme.card.border};
 
-  :hover {
-    background: 1px ${({ theme }: { theme: Theme }) => theme.secondary.step3};
+  &:hover {
+    background: 1px ${({ theme }: { theme: any }) => theme.secondary.step3};
   }
 `;
 
@@ -47,7 +46,7 @@ const ListItem = styled.div`
 `;
 
 const StyledIcon = styled(RiArrowRightSLine)`
-  fill: ${({ theme }: { theme: Theme }) => theme.primary.step9};
+  fill: ${({ theme }: { theme: any }) => theme.primary.step9};
   font-size: 3rem;
 `;
 
