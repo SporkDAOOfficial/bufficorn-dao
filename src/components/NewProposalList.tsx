@@ -1,7 +1,7 @@
 import { Link as RouterLink } from "react-router-dom";
 import { RiArrowRightSLine } from "react-icons/ri/index.js";
 import styled from "styled-components";
-import { Bold, border, DataSm, ParMd, Tabs, Theme } from "@daohaus/ui";
+import { Bold, border, DataSm, ParMd } from "@daohaus/ui";
 import { CustomFormLego } from "../legos/fieldConfig";
 import { useCurrentDao } from "@daohaus/moloch-v3-hooks";
 
@@ -30,7 +30,7 @@ const ListItemHoverContainer = styled.div`
   align-items: center;
   width: 100%;
   padding: 1rem;
-  border-radius: ${border.radius};
+  border-radius: ${({ theme }: { theme: any }) => theme.card.border};
 
   &:hover {
     background: 1px ${({ theme }: { theme: any }) => theme.secondary.step3};
