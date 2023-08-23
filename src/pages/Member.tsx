@@ -1,17 +1,17 @@
-import { BsArrowLeft, BsShareFill } from "react-icons/bs";
-import styled from "styled-components";
+import { BsArrowLeft, BsShareFill } from 'react-icons/bs';
+import styled from 'styled-components';
 
-import { useCurrentDao, useDaoMember } from "@daohaus/moloch-v3-hooks";
-import { MemberProfileCard } from "@daohaus/moloch-v3-macro-ui";
+import { useCurrentDao, useDaoMember } from '@daohaus/moloch-v3-hooks';
+import { MemberProfileCard } from '@daohaus/moloch-v3-macro-ui';
 import {
   Button,
   ParLg,
   SingleColumnLayout,
-  Spinner,
+  Loading,
   useBreakpoint,
   useToast,
   widthQuery,
-} from "@daohaus/ui";
+} from '@daohaus/ui';
 
 const ButtonsContainer = styled.div`
   display: flex;
@@ -44,15 +44,15 @@ export const Member = () => {
   const handleOnClick = () => {
     navigator.clipboard.writeText(`${window.location.href}`);
     successToast({
-      title: "URL copied to clipboard",
+      title: 'URL copied to clipboard',
     });
   };
 
   if (!daoChain || !daoId) return <ParLg>DAO Not Found</ParLg>;
 
   return (
-    <SingleColumnLayout title="Member Profile">
-      {!member && isFetching && <Spinner size="12rem" />}
+    <SingleColumnLayout title='Member Profile'>
+      {!member && isFetching && <Loading size={12} />}
       {!member && isFetched && <ParLg>Member Not Found</ParLg>}
       {member && (
         <>
