@@ -15,6 +15,7 @@ export default ({ mode }) => {
         NX_TARGET_KEY: process.env.VITE_TARGET_KEY,
         NX_GNOSISSCAN_KEY: process.env.VITE_GNOSISSCAN_KEY,
         NX_WALLET_CONNECT_ID: process.env.VITE_WALLET_CONNECT_ID,
+        NX_POLYGONPOS_ALCHEMY_KEY: process.env.VITE_POLYGONPOS_ALCHEMY_KEY,
         NODE_ENV: '16.6.0',
       },
     },
