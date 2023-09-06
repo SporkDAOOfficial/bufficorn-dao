@@ -1,9 +1,9 @@
-import { Link as RouterLink } from "react-router-dom";
-import { RiArrowRightSLine } from "react-icons/ri/index.js";
-import styled from "styled-components";
-import { Bold, DataSm, ParMd } from "@daohaus/ui";
-import { CustomFormLego } from "../legos/fieldConfig";
-import { useCurrentDao } from "@daohaus/moloch-v3-hooks";
+import { Link as RouterLink } from 'react-router-dom';
+import { RiArrowRightSLine } from 'react-icons/ri/index.js';
+import styled from 'styled-components';
+import { Bold, DataSm, ParMd } from '@daohaus/ui';
+import { CustomFormLego } from '../legos/fieldConfig';
+import { useCurrentDao } from '@daohaus/moloch-v3-hooks';
 
 const ListContainer = styled.div`
   margin-top: 2.5rem;
