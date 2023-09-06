@@ -100,22 +100,12 @@ const fetchUserERC20 = async ({
     return setFetchState(TokenFetchStates.NotValidNetwork);
 
   const spenderAddress = CONTRACT_KEYCHAINS.TRIBUTE_MINION[chainId];
-  // const contract = createContract({
-  //   address: tokenAddress,
-  //   chainId,
-  //   abi: LOCAL_ABI.ERC20,
-  // });
 
   const client = createViemClient({
     chainId,
   });
 
   try {
-    // const balance = await contract.balanceOf(userAddress);
-    // const decimals = await contract.decimals();
-    // const tokenName = await contract.name();
-    // const tokenSymbol = await contract.symbol();
-    // const allowance = await contract.allowance(userAddress, spenderAddress);
     const balance = (await client.readContract({
       abi: LOCAL_ABI.ERC20,
       address: tokenAddress,

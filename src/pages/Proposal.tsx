@@ -1,17 +1,17 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   useConnectedMember,
   useCurrentDao,
   useDaoProposal,
-} from "@daohaus/moloch-v3-hooks";
+} from '@daohaus/moloch-v3-hooks';
 import {
   ProposalActionData,
   ProposalActions,
   ProposalDetails,
   ProposalDetailsContainer,
   ProposalHistory,
-} from "@daohaus/moloch-v3-macro-ui";
-import { BiColumnLayout, Card, ParLg, Loading, widthQuery } from "@daohaus/ui";
+} from '@daohaus/moloch-v3-macro-ui';
+import { BiColumnLayout, Card, ParLg, Loading, widthQuery } from '@daohaus/ui';
 import {
   DAO_METHOD_TO_PROPOSAL_TYPE,
   getProposalTypeLabel,
@@ -19,13 +19,13 @@ import {
   PROPOSAL_TYPE_WARNINGS,
   SENSITIVE_PROPOSAL_TYPES,
   TXLego,
-} from "@daohaus/utils";
-import { PROTECTED_TARGET } from "../targetDao";
-import { useDHConnect } from "@daohaus/connect";
+} from '@daohaus/utils';
+import { PROTECTED_TARGET } from '../targetDao';
+import { useDHConnect } from '@daohaus/connect';
 import {
   CUSTOM_APP_PROPOSAL_TYPE_LABELS,
   CUSTOM_PROPOSAL_TYPE_WARNINGS,
-} from "../utils/proposalData";
+} from '../utils/proposalData';
 
 const LoadingContainer = styled.div`
   margin-top: 5rem;
