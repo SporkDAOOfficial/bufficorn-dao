@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FormBuilder } from '@daohaus/form-builder';
-import { useDao } from '@daohaus/moloch-v3-context';
 
 import { AppFieldLookup } from '../legos/fieldConfig';
 import { useCurrentDao } from '@daohaus/moloch-v3-hooks';
