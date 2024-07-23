@@ -6,9 +6,6 @@
   "engines": {
     "node": "18"
   },
-  "engines": {
-    "node": "18"
-  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
